@@ -111,6 +111,10 @@ ul>li {
     .custome1{
         width:11%;
     }
+    
+.Headingimg{
+    width: 30vw;
+}
     }
 
     @media only screen and (max-width: 475px) {
@@ -119,7 +123,10 @@ ul>li {
         .custome1{
             width:20%;
         }
-       
+        
+.Headingimg{
+    width: 40vw;
+}
         }
 
 .blogsfirst{
@@ -176,4 +183,8 @@ ul>li {
 .model--body--message{
     text-align: center;
     font-size: 20px;
+}
+
+.Headingimg{
+    width: 20vw;
 }

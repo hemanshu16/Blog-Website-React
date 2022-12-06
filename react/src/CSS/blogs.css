@@ -1,0 +1,27 @@
+.Container--blogs{
+    width: 70%;
+    margin-left: 15%;
+    margin-top : 10px;
+    justify-items: center;
+}
+
+.blog--card{
+   
+}
+
+.blog--card:hover{
+
+     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+     transform: scale(1.015);
+}
+
+.button--ud > button{
+    background-color: white;
+    border: none;
+    outline: none;
+}
+
+.button--ud > button:hover{
+    border-bottom: 1px solid black;
+    transition: 2ms;
+}

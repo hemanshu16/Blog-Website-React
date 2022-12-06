@@ -1,0 +1,63 @@
+.TextEditorWrapper{
+    margin-top: 10px;
+}
+
+.texteditorbutton{
+    text-align: center;
+    border: none;
+    background-color: white ;
+    padding: 7px 15px;
+}
+.texteditorbutton:hover{
+    background-color: rgb(47, 190, 162);
+    border-radius: 10px;
+}
+
+.BlogTitle{
+    width: 800px;
+    border-bottom: 1px solid black;
+    margin: 10px;
+}
+
+.BlogTitleinput{
+    width:800px;
+    border:none;
+    outline: none;
+}
+ 
+.container{
+    display: flex;
+}
+
+.container1{
+    display: flex;
+
+}
+
+.con1item{
+    flex: auto;
+   
+}
+
+.con1item2{
+    float: left;;
+}
+
+.imginput{
+    width: 65%;
+    margin-left:15px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.description{
+    width: 65%;
+    padding: 15px;
+    text-indent: 30px;
+    outline: none;
+    margin-left: 15px;
+    margin-top: 20px;
+    border:  1.5px solid black;
+    border-radius: 10px;
+}

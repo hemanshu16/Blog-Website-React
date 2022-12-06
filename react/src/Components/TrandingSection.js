@@ -1,8 +1,89 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
-export default function trandingBlogs()
+export default function TrandingBlogs(props)
 {
+    const[blogs,setblogs] = useState([]);
+   const[message, setMessage] = useState({
+       message : "",
+       visible : false
+   })
+   async function getblogs()
+   {
+       const response = await fetch("http://localhost:8080/blogs/trandingblogs", {
+       method: "GET",
+       mode: "cors",
+       headers: {
+         "Content-Type": "application/json",
+       },
+ 
+      
+     });
+     response.json().then((data) => {
+       
+        setblogs(old => [...old,...data]);
+           
+     }).catch(e => {
+       setMessage({
+            message : "Some Thing Went Wrong",
+            visible : true
+       });
+     })
+   }
+   useEffect( ()=>{
+        
+        getblogs();
+        
+   },[]);
+   function closeToast()
+   {
+       setMessage({message : "", visible : false});
+   }
+   const Blogs = blogs.map(blog => {
+    return (  <div className="row g-0" Style="width:70%; margin-left:15%; border:1px solid black; border:none;  
+    border-bottom:0.5px solid black">
+      <div className="col-md-4 container--tranding" Style="display: flex;
+      align-items: center; ">
+        <img src={blog.headerimglink} class="img-fluid rounded-start" alt="..." />
+      </div>
+      <div className="col-md-8 conatiner--tranding">
+        <div className="card-body">
+        <div className="row">
+                
+                <div className="col-12 second">
+                    <div className="row secondfirst">
+                   
+                      <div className="col-10"> <img alt="Entrepreneur's Handbook" className="trandimagecenter  " src={blog.author_img} width="20" height="20" /> 
+                      <span Style="margin-left:10px;">{blog.author_name}</span>
+                      </div>
+                   
+                   
+                    </div>
+                   
+                   
+                </div>
+          <h5 className="card-title " Style="height:30px; overflow:hidden;"> {blog.title}</h5>
+          <p className="card-text" Style=" height:78px; overflow:hidden;">{blog.description}</p>
+          <p className="card-text"><small class="text-muted">Last updated {new Date(blog.date).toDateString()}</small></p>
+         
+          <div className="row">
+              <div className="col-md-8">
+              <i className="fa-solid fa-eye "></i>&nbsp; {blog.Views} | &nbsp;
+              <i className="fa-regular fa-comment"></i>&nbsp; {blog.comments.length -1} | &nbsp;
+              <i className="fa-regular fa-thumbs-up" ></i>&nbsp; {blog.likes} |&nbsp;
+              <i className="fa-solid fa-info"></i> {blog.issues.length -1}
+              </div>
+              <div className="col button--ud">
+              <button onClick={()=>{props.setComponent({name:"blogView", blog : blog});}}>Read More </button>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  );
+   })
     return (
+        <>
         <section id="Tranding">
         <div className="container-fluid ">
           <div className="row trandingcontainer2"> 
@@ -13,7 +94,7 @@ export default function trandingBlogs()
          
         </div>
             <div className="row trandingcontainer">
-                <div className="col-12 col-md-4 col-sm-6">
+                {/* <div className="col-12 col-md-4 col-sm-6">
                    <div className="row">
                        <div className="col-3 blognumber">
                              <span >01</span>
@@ -138,9 +219,23 @@ export default function trandingBlogs()
                   </div>
               </div>
           </div>
-       </div>
+       </div> */}
+      
+           {Blogs}
             </div>
         </div>
       </section>
+      <div className="position-fixed bottom-0 end-0 p-3" >
+      <div id="liveToast" className={message.visible ? "toast show" : "toast hide"} role="alert" aria-live="assertive" aria-atomic="true">
+        <div className="toast-header">
+          
+          <strong className="me-auto"> {message.visible && message.message}</strong>
+          
+          <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close" onClick={closeToast}></button>
+        </div>
+        
+      </div>
+    </div>
+    </>
     );
 }
